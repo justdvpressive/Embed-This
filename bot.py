@@ -8,16 +8,16 @@ game = "with embeds!" # This will display as the game on Discord.
 
 from discord.ext import commands
 from discord.ext.commands import Bot
-import discord, chalk
+import discord
 
 bot = commands.Bot(command_prefix=prefix)
 bot.remove_command("help")
 
 @bot.event
 async def on_ready():
-    chalk.blue ("Ready when you are. ;)") 
-    chalk.blue ("Name: {}".format(bot.user.name))
-    chalk.blue ("ID: {}".format(bot.user.id))
+    print("Ready when you are. ;)") 
+    print("Name: {}".format(bot.user.name))
+    print("ID: {}".format(bot.user.id))
     await bot.change_presence(activity=discord.Game(name=game))
 
 @bot.command(pass_context=True)
@@ -85,7 +85,7 @@ async def rembed(ctx, *, a_sMessage):
     embed.set_author(name=ctx.message.author.name + " says..")
     embed.set_footer(text="Embed-This!")
     await bot.send_message(ctx.message.channel, embed=embed)
-    chalk.green(ctx.message.author.name + " has embedded a message in " + ctx.message.server.name)
+    print(ctx.message.author.name + " has embedded a message in " + ctx.message.server.name)
 
 @bot.command(pass_context=True)
 @commands.has_role(embed_role)
@@ -96,6 +96,6 @@ async def embed(ctx, *, a_sMessage):
     embed.set_footer(text="Embed Creator")
     await bot.delete_message(ctx.message)
     await bot.send_message(ctx.message.channel, embed=embed)
-    chalk.green(ctx.message.author.name + " has embedded a message in " + ctx.message.server.name)
+    print(ctx.message.author.name + " has embedded a message in " + ctx.message.server.name)
 
 bot.run(token)
