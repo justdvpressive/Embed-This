@@ -13,7 +13,7 @@ import discord
 bot = commands.Bot(command_prefix=prefix)
 bot.remove_command("help")
 
-channeldd = ctx.message.channel
+
 @bot.event
 async def on_ready():
     print("Ready when you are. ;)") 
@@ -23,6 +23,7 @@ async def on_ready():
 
 @bot.command(pass_context=True)
 async def help(ctx):
+    channeldd = ctx.message.channel
     embed = discord.Embed(title="Help!", description="Basically, this is how I'm used.", color=0x00a0ea)
     embed.add_field(name="{}embed".format(prefix), value="Creates a quick embed with the users input after the command is called.")
     embed.add_field(name="{}rembed".format(prefix), value="Let's you embed with more user input. After entering your message the bot will ask questions about the color and thumbnail.")
@@ -32,6 +33,7 @@ async def help(ctx):
 @bot.command(pass_context=True)
 @commands.has_role(embed_role)
 async def rembed(ctx, *, a_sMessage):
+    channeldd = ctx.message.channel
     color = None
     thumb = None
     embed_color = discord.Embed(title="🕑 Tick-Tock", description="Would you like to use a **custom color**? If **yes**, state it. If **no** simply say *no*.", color=0xffff00)
@@ -91,6 +93,7 @@ async def rembed(ctx, *, a_sMessage):
 @bot.command(pass_context=True)
 @commands.has_role(embed_role)
 async def embed(ctx, *, a_sMessage):
+    channeldd = ctx.message.channel
     embed = discord.Embed(description=a_sMessage, color=0x00a0ea)
     embed.set_thumbnail(url=ctx.message.author.avatar_url)
     embed.set_author(name=ctx.message.author.name + " says..")
